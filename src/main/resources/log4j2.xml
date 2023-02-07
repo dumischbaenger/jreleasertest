@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{ISO8601} ${sys:user.name} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<File name="fileapp" fileName="${sys:logFilename:-application.log}">
+			<PatternLayout pattern="%d{ISO8601} ${sys:user.name} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+	<Loggers>
+	    <!--
+        <Logger name="de.bayerwald.groovy.samples" level="info" additivity="false">
+          <AppenderRef ref="Console"/>
+          <AppenderRef ref="fileapp" />
+        </Logger>
+        -->
+		<Root level="debug">
+          <AppenderRef ref="Console" />
+          <AppenderRef ref="fileapp" />
+		</Root>
+	</Loggers>
+</Configuration>

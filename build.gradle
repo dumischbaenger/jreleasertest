@@ -1,0 +1,55 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+buildscript {
+  repositories { jcenter() }
+}
+
+plugins {
+  id "java"
+  id "eclipse"
+  id "groovy"
+  id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+
+apply plugin: 'application'
+mainClassName = 'de.bayerwald.glasLieferOrte.GlasLieferOrte'
+applicationDefaultJvmArgs = []
+
+
+compileJava {
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
+}
+
+
+//MAJOR.MINOR.REVISION.BUILDNUMBER
+class MyVersion {
+  String major="1"
+  String minor="0"
+  String revision="0"
+  String build=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm"))
+  String toString() {
+    return "$major.$minor.$revision-${build}"
+  }
+}
+
+version = new MyVersion().toString()
+
+sourceSets {
+  main {
+    resources {srcDirs= ["src/main/resources"]}
+  }
+}
+
+repositories { jcenter() }
+
+dependencies {
+  implementation 'org.codehaus.groovy:groovy-all:3.0.6'
+  implementation 'org.apache.logging.log4j:log4j-core:2.10.0'
+  implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.10.0'
+}
+
+
+
