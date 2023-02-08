@@ -10,6 +10,7 @@ plugins {
   id "eclipse"
   id "groovy"
   id "com.github.johnrengelman.shadow" version "7.0.0"
+  id 'org.jreleaser' version '1.4.0'
 }
 
 
@@ -35,7 +36,11 @@ class MyVersion {
   }
 }
 
-version = new MyVersion().toString()
+//project.name="myproject"
+project.group="my.group"
+project.version = new MyVersion().toString()
+project.description="jreleaser example application"
+//project.copyright="no rights reserved"
 
 sourceSets {
   main {
@@ -51,5 +56,32 @@ dependencies {
   implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.10.0'
 }
 
+
+jreleaser {
+  project {
+    authors = ['dumischbaenger']
+    license = 'no rights reserved'
+    links {
+        homepage = 'https://mysuperwebsite.com/'
+    }
+    inceptionYear = '2023'
+  }
+
+  distributions {
+    jreleasertest {
+       artifact {
+           path = 'build/distributions/{{distributionName}}-{{projectVersion}}.zip'
+       }
+    }
+  }
+//  assemble{
+//    javaArchive {
+//        app {
+//          active="ALWAYS"
+//          archiveName="app-{{projectVersion}}"
+//        }
+//    }
+//  }
+}
 
 
