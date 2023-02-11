@@ -27,9 +27,9 @@ compileJava {
 
 //MAJOR.MINOR.REVISION.BUILDNUMBER
 class MyVersion {
-  String major="1"
+  String major="3"
   String minor="0"
-  String revision="0"
+  String revision="1"
   String build=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm"))
   String toString() {
     return "$major.$minor.$revision-${build}"
