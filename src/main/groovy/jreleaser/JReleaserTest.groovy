@@ -20,7 +20,7 @@ class JReleaserTest {
   static main(args) {
     log.info "program started"
 
-    println "hello jreleaser2"
+    println "hello jreleaser3"
  
     log.info "program stopped"
   }
