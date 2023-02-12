@@ -21,7 +21,7 @@ class JReleaserTest {
     log.info "program started"
 
     //BD changelog try 5 to kill bug #(1)
-    //BD changelog {{repoOwner}}/{{repoName}}#(\d+) dumischbaenger/jreleasertest#(1)
+    //BD changelog {{repoOwner}}/{{repoName}}#(\d+) dumischbaenger/jreleasertest#(1) #(1)
     
     println "hello jreleaser3 bug squashed try 8"
  
