@@ -74,14 +74,40 @@ jreleaser {
        }
     }
   }
-//  assemble{
-//    javaArchive {
-//        app {
-//          active="ALWAYS"
-//          archiveName="app-{{projectVersion}}"
-//        }
-//    }
-//  }
+
+  release {
+    github {
+      enabled = true
+      repoOwner = 'dumischbaenger'
+      name = 'jreleasertest'
+      username = 'dumischbaenger'
+//      overwrite = true
+
+
+      prerelease {
+        enabled = false
+        pattern = '.*-pre'
+      }
+
+
+      milestone {
+        close = true
+        name = '{{tagName}}'
+      }
+
+      issues {
+        enabled = true
+        comment = 'Released in {{tagName}} -> {{releaseNotesUrl}}'
+        applyMilestone = 'ALWAYS'
+
+        label {
+          name = 'released'
+          color = '#FF0000'
+          description = 'Issue has been released'
+        }
+      }
+    }
+  }
 }
 
 
