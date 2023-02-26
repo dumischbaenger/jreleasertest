@@ -10,12 +10,12 @@ plugins {
   id "eclipse"
   id "groovy"
   id "com.github.johnrengelman.shadow" version "7.0.0"
-  id 'org.jreleaser' version '1.4.0'
+  id 'org.jreleaser' version '1.5.0'
 }
 
 
 apply plugin: 'application'
-mainClassName = 'de.bayerwald.glasLieferOrte.GlasLieferOrte'
+mainClassName = 'jreleaser.JReleaserTest'
 applicationDefaultJvmArgs = []
 
 
@@ -72,6 +72,9 @@ jreleaser {
        artifact {
            path = 'build/distributions/{{distributionName}}-{{projectVersion}}.zip'
        }
+       artifact {
+           path = 'build/libs/{{distributionName}}-{{projectVersion}}-all.jar'
+       }
     }
   }
 
@@ -110,4 +113,17 @@ jreleaser {
   }
 }
 
+//BD zusaetzliche Task Dependencies
+jreleaserRelease.dependsOn shadowJar
+
+//BD Task Dependencies ausgeben
+gradle.taskGraph.whenReady {taskGraph ->
+  println "Tasks"
+  taskGraph.getAllTasks().eachWithIndex{ Task task, n ->
+      println "${n + 1} $task $task.path" 
+      task.dependsOn.eachWithIndex{ depObj, m ->
+          println "  ${ m + 1 } $depObj"
+      }
+  }
+}
 
